@@ -4,6 +4,8 @@ import del from "del";
 import ws from "gulp-webserver";
 import gimage from "gulp-image";
 import sass from "gulp-sass";
+import autoprefixer from "gulp-autoprefixer";
+import miniCSS from "gulp-csso";
 
 sass.complier = require("node-sass")
 
@@ -44,10 +46,18 @@ const img = () =>
     .pipe(gimage())
     .pipe(gulp.dest(routes.img.dest));
 
-const styles = () => 
+const styles = () =>
     gulp
     .src(routes.scss.src)
     .pipe(sass().on('error', sass.logError))
+    .pipe(
+        autoprefixer({
+            overrideBrowserslist: [
+                'last 2 versions'
+            ]
+        })
+    )
+    .pipe(miniCSS())
     .pipe(gulp.dest(routes.scss.dest))
 
 const watch = () => {
