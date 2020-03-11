@@ -1,6 +1,17 @@
 @import "_reset";
 @import "_variables";
 
-body{
+body {
     background-color: $red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    font-size: 30px;
+    height: 100vh;
+}
+
+img {
+    width: 200px;
 }
